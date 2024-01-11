@@ -3,19 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quotw of the Day</title>
+    <title>Quote of the Day</title>
     <link rel="stylesheet" href="./main.css">
 </head>
 <body>
 
     <div class="quote-box" >
         <h2>Quote of the day</h2>
-        <blockquote>Loading...</blockquote>
-        <span>Loading...</span>
-        <button>New Quote</button>
-        <button>  <img src="https://cdn-icons-png.flaticon.com/512/124/124021.png" width="20px" height="px" > Tweet</button>
+        <blockquote id="quote" >Laoding...</blockquote>
+        <span id="author" >Loading...</span>
+        <button onclick="getquote(api_url)" > New Quote</button>
+        <button onclick="tweet()" >  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/512px-Logo_of_Twitter.svg.png" width="20px" height="px" > Tweet</button>
 
     </div>
+
+    <script>
+
+        const quote=document.querySelector('#quote');
+
+        const author=document.querySelector('#author');
+
+        const api_url="https://api.quotable.io/random";
+
+        async function getquote(url){
+            const response=await fetch(url)
+            var data=await response.json();
+            quote.innerHTML=data.content
+            author.innerHTML=data.author
+        }
+        getquote(api_url)  ;
+
+
+
+function tweet(){
+    window.open("https://twitter.com/intent/tweet?text= "+quote.innerHTML+  "    -----  by   " +author.innerHTML , "tweet window" ,"width=600, height=300"  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
 
 
 
